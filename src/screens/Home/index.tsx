@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Container, UploadFileForm } from '../../components/molecules';
+import { Container, FileUploadForm } from '../../components/molecules';
 import { Button, Snackbar } from '../../components/atoms';
 import { generateThumbnails, type IDataImage } from '../../config/api/services';
 import { HomeContainer } from './styles';
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
             />
           </div>
         ) : (
-          <UploadFileForm isLoading={isLoading} handleSubmit={handleSubmit} />
+          <FileUploadForm isLoading={isLoading} handleSubmit={handleSubmit} />
         )}
         <Snackbar
           text={t('copied')}
