@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
 import Alert from '@mui/material/Alert';
-import { useDragDrop } from '@hooks';
+import { useDragDrop, useCustomTheme } from '@hooks';
 import { FileTypeDescription } from '@atoms';
 import { StyledBox, StyledArea } from './styles';
 
@@ -11,6 +11,7 @@ import { StyledBox, StyledArea } from './styles';
  * @returns {JSX.Element}
  */
 const DragDropZone = ({ handleImageSelected }): JSX.Element => {
+  const theme = useCustomTheme();
   const { t } = useTranslation('dragdrop');
   const [
     dragActive,
@@ -32,6 +33,7 @@ const DragDropZone = ({ handleImageSelected }): JSX.Element => {
         onDrop={handleDrop}
         onClick={handleFileInputClicked}
         dragActive={dragActive}
+        theme={theme}
       >
         <input
           ref={fileInputRef}
