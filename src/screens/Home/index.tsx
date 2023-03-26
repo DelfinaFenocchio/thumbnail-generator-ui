@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Container, FileUploadForm } from '../../components/molecules';
-import { Button, Snackbar } from '../../components/atoms';
-import { generateThumbnails, type IDataImage } from '../../config/api/services';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import { Container, FileUploadForm } from '@molecules';
+import { Button, Snackbar } from '@atoms';
+import { useCustomTheme } from '@hooks';
+import { type DataImage } from '@globalConstants';
+import { generateThumbnails } from '@services';
 import { HomeContainer } from './styles';
 
 /**
@@ -13,20 +16,21 @@ import { HomeContainer } from './styles';
  */
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [imageUrls, setImageUrls] = useState<IDataImage[]>([]);
+  const [imageUrls, setImageUrls] = useState<DataImage[]>([]);
   const [isCopied, setIsCopied] = useState(false);
+  const theme = useCustomTheme();
   const { t } = useTranslation('home');
 
   /**
    * Function to generate thumbnails
    * @param image
    */
-  const handleSubmit = async (image): Promise<void> => {
+  const handleSubmit = async (image) => {
     try {
       setIsLoading(true);
       const formData = new FormData();
       formData.append('file', image);
-      const data = generateThumbnails(image);
+      const data = await generateThumbnails(formData);
       setImageUrls(data);
     } catch (e) {
       console.error(e);
@@ -60,22 +64,25 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <HomeContainer>
+      <HomeContainer theme={theme}>
         {imageUrls.length > 0 ? (
           <div>
-            <p className='title'>{t('title_thumbnails_ready')}</p>
+            <h2>{t('title_thumbnails_ready')}</h2>
             <div className='images-grid'>
-              {imageUrls.map((image: IDataImage) => (
-                <span key={image.id}>
-                  <button
-                    onClick={() => {
-                      handleCopyClick(image.url);
-                    }}
-                  >
-                    <img src={image.url} alt='probando' className='image' />
-                  </button>
-                  <p>{image.url}</p>
-                </span>
+              {imageUrls.map((image: DataImage) => (
+                <div
+                  className='image-container'
+                  key={image.id}
+                  onClick={() => {
+                    handleCopyClick(image.url);
+                  }}
+                >
+                  <img src={image.url} alt='probando' className='image' />
+                  <span>
+                    <p>URL</p>
+                    <FileCopyIcon />
+                  </span>
+                </div>
               ))}
             </div>
             <Button
