@@ -22,6 +22,7 @@ const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element =
   const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
   const [openCamera, setOpenCamera] = useState(false);
   const { t } = useTranslation('upload_file_form');
+
   const handleTakePhoto = (cameraImage: string | ArrayBuffer): void => {
     setImagePreview(cameraImage);
     setOpenCamera(false);
@@ -29,7 +30,8 @@ const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element =
 
   return (
     <StyledForm
-      onSubmit={async () => {
+      onSubmit={async (e) => {
+        e.preventDefault();
         await handleSubmit(imagePreview);
       }}
     >
