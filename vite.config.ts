@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
@@ -15,5 +17,10 @@ export default defineConfig({
       '@services': path.resolve(__dirname, './src/config/api/services'),
       '@store': path.resolve(__dirname, './src/store'),
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/config/jest/setup.ts',
   },
 });
