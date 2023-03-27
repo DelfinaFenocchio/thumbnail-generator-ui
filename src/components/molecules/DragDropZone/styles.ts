@@ -12,7 +12,7 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const StyledArea = styled.div`
+const StyledArea = styled.div<{ dragActive: boolean }>`
   height: 100%;
   display: flex;
   flex-direction: column;
