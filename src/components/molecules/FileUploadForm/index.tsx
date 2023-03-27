@@ -19,11 +19,11 @@ interface IUploadFile {
  * @returns {JSX.Element}
  */
 const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element => {
-  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [openCamera, setOpenCamera] = useState(false);
   const { t } = useTranslation('upload_file_form');
 
-  const handleTakePhoto = (cameraImage: string | ArrayBuffer): void => {
+  const handleTakePhoto = (cameraImage: string): void => {
     setImagePreview(cameraImage);
     setOpenCamera(false);
   };
@@ -35,7 +35,7 @@ const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element =
         await handleSubmit(imagePreview);
       }}
     >
-      <h1>{t('title')}</h1>
+      <h2>{t('title')}</h2>
       {openCamera ? (
         <WebCamera setOpenCamera={setOpenCamera} handleTakePhoto={handleTakePhoto} />
       ) : (
@@ -60,6 +60,7 @@ const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element =
                 }}
                 icon={
                   <DeleteIcon
+                    className='delete-icon'
                     onClick={() => {
                       setImagePreview(null);
                     }}
@@ -76,7 +77,7 @@ const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element =
             text={t('button_generate_thumbnails')}
             type='submit'
             isLoading={isLoading}
-            disabled={!imagePreview}
+            disabled={imagePreview === null || isLoading}
           />
         </>
       )}
