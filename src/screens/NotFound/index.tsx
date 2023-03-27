@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Container } from '../../components/molecules';
+import { Container } from '@molecules';
 import { NotFoundContainer } from './styles';
 
 /**

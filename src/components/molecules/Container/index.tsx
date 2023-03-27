@@ -1,5 +1,5 @@
 import { type SxProps } from '@mui/material';
-import { Header } from '../../atoms';
+import { Header } from '@atoms';
 import { StyledContainer } from './styles';
 
 interface IContainer {

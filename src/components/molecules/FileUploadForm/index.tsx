@@ -4,7 +4,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DragDropZone from '../DragDropZone';
 import WebCamera from '../WebCamera';
-import { Button, IconButton } from '../../atoms';
+import { Button, IconButton } from '@atoms';
 import StyledForm from './styles';
 
 interface IUploadFile {

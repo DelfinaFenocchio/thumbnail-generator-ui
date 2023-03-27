@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
-import { Container } from '../../components/molecules';
-import { Button } from '../../components/atoms';
+import { Container } from '@molecules';
+import { Button } from '@atoms';
 import { StyledContainer } from './styles';
 
 /**
