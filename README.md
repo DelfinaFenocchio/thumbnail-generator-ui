@@ -1,12 +1,20 @@
 # Thumbnail-generator-ui
 
-## Before running the application
+## Instructions
 
-1. The .env file is encrypted. Decrypt the `.env` file before running the application.
+1. Clone the repository
+2. The .env file is encrypted. Decrypt the `.env` file before running the application.
 
-2. Execute the command: `npm install`
+## Running the application with Docker
 
-## Running the application
+1. Execute the command: `docker-compose --build`
+2. Open `http://localhost:5173/` on your browser
 
-1. Execute the command: `npm run dev`
+## Running the application without Docker
+
+1. Execute the commands:
+
+- `npm install`
+- `npm run dev`
+
 2. Open `http://localhost:5173/` on your browser
