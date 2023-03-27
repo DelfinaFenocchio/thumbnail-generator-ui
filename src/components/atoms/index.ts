@@ -4,3 +4,4 @@ export { default as FileTypeDescription } from './FileTypeDescription';
 export { default as Header } from './Header';
 export { default as Snackbar } from './Snackbar';
 export { default as IconButton } from './IconButton';
+export { default as ProtectedRoute } from './PrivateRoute';
