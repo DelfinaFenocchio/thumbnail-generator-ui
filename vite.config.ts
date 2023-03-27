@@ -16,6 +16,7 @@ export default defineConfig({
       '@screens': path.resolve(__dirname, './src/screens'),
       '@services': path.resolve(__dirname, './src/config/api/services'),
       '@store': path.resolve(__dirname, './src/store'),
+      '@theme': path.resolve(__dirname, './src/helpers/theme'),
     },
   },
   test: {
