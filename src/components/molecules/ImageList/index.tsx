@@ -51,6 +51,7 @@ const ImagesList = ({ imageUrls, handleClick }): JSX.Element => {
               }}
             >
               <img src={image.url} alt='thumbnail' className='image' />
+              <p>{`${image.width}x${image.height}`}</p>
               <div className='url-container'>
                 <p className='url-text'>URL</p>
                 <FileCopyIcon />
