@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Container, FileUploadForm, ImageList } from '@molecules';
-
+import { Snackbar } from '@atoms';
 import { type DataImage } from '@globalConstants';
 import { generateThumbnails } from '@services';
 import { HomeContainer } from './styles';
@@ -14,6 +15,8 @@ import { HomeContainer } from './styles';
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrls, setImageUrls] = useState<DataImage[]>([]);
+  const [error, setError] = useState(false);
+  const { t } = useTranslation('home');
 
   /**
    * Function to generate thumbnails
@@ -28,6 +31,7 @@ const Home: React.FC = () => {
       setImageUrls(data);
     } catch (e) {
       console.error(e);
+      setError(true);
     } finally {
       setIsLoading(false);
     }
@@ -46,6 +50,14 @@ const Home: React.FC = () => {
         ) : (
           <FileUploadForm isLoading={isLoading} handleSubmit={handleSubmit} />
         )}
+        <Snackbar
+          text={t('error')}
+          severity={'error'}
+          open={error}
+          handleClose={() => {
+            setError(false);
+          }}
+        />
       </HomeContainer>
     </Container>
   );
