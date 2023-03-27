@@ -7,7 +7,7 @@
 
 ## Running the application with Docker
 
-1. Execute the command: `docker-compose --build`
+1. Execute the command: `docker-compose up --build`
 2. Open `http://localhost:5173/` on your browser
 
 ## Running the application without Docker
