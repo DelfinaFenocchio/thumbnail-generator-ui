@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-const HomeContainer = styled.div(
-  ({ theme }) => `
+const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -20,7 +19,7 @@ const HomeContainer = styled.div(
 
   .title {
     font-size: 22px;
-    color: #e040fb;
+    color: ${({ theme }) => theme.palette.primary.main};
     font-weight: bold;
   }
 
@@ -31,18 +30,17 @@ const HomeContainer = styled.div(
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: ${theme.palette.background.card}}
+    background-color: ${({ theme }) => theme.palette.background.paper}}
     cursor: pointer;
     transition: border-color 0.25s;
   }
   .image-container:hover {
-    border-color: theme.palette.primary.main};
+    border-color: ${({ theme }) => theme.palette.primary.main};
   }
   .image-containe:focus,
   .image-containe:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
-`
-);
+`;
 
 export { HomeContainer };

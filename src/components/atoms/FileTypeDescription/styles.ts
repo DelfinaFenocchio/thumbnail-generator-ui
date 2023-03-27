@@ -6,7 +6,7 @@ const StyledContainer = styled.span`
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background-color: #ab47bc;
+    background-color: ${({ theme }) => theme.palette.primary.light};
     display: flex;
     justify-content: center;
     align-items: center;

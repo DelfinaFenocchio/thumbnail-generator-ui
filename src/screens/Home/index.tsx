@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { Container, FileUploadForm } from '@molecules';
 import { Button, Snackbar } from '@atoms';
-import { useCustomTheme } from '@hooks';
 import { type DataImage } from '@globalConstants';
 import { generateThumbnails } from '@services';
 import { HomeContainer } from './styles';
@@ -18,7 +17,6 @@ const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrls, setImageUrls] = useState<DataImage[]>([]);
   const [isCopied, setIsCopied] = useState(false);
-  const theme = useCustomTheme();
   const { t } = useTranslation('home');
 
   /**
@@ -64,7 +62,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <HomeContainer theme={theme}>
+      <HomeContainer>
         {imageUrls.length > 0 ? (
           <div>
             <h2>{t('title_thumbnails_ready')}</h2>

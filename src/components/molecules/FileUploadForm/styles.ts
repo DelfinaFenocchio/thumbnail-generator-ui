@@ -5,7 +5,7 @@ const StyledForm = styled.form`
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background-color: #ab47bc;
+    background-color: ${({ theme }) => theme.palette.primary.light};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +21,10 @@ const StyledForm = styled.form`
 
   .preview-image {
     max-width: 100%;
+  }
+
+  .delete-icon {
+    color: ${({ theme }) => theme.palette.error.light};
   }
 `;
 
