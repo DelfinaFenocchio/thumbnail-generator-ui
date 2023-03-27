@@ -7,7 +7,8 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute />}>
+          <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
         </Route>
         <Route path='/login' element={<Login />} />
