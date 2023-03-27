@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
-import { Toolbar, IconButton, Avatar, MenuItem, Menu } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LogoutIcon from '@mui/icons-material/Logout';
+import useStore from '@store';
 import StyledAppBar from './styles';
 
 /**
@@ -9,8 +17,11 @@ import StyledAppBar from './styles';
  */
 const Header = (): JSX.Element => {
   const { user, logout } = useAuth0();
-  const [firstName, lastName] = user?.name?.toUpperCase().split(' ');
+  const [firstName, lastName] = user?.name?.toUpperCase().split(' ') ?? ['', ''];
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const themeMode = useStore((state) => state.themeMode);
+  const toggleThemeMode = useStore((state) => state.toggleThemeMode);
+
   const { t } = useTranslation('header');
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>): void => {
@@ -26,10 +37,20 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <StyledAppBar position='static'>
+    <StyledAppBar position='static' color='primary'>
       <Toolbar>
         <h6 className='title'>Thumbnail Generator</h6>
         <div>
+          <IconButton
+            size='large'
+            aria-label='account of current user'
+            aria-controls='menu-appbar'
+            aria-haspopup='true'
+            onClick={toggleThemeMode}
+            color='inherit'
+          >
+            <Avatar>{themeMode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}</Avatar>
+          </IconButton>
           <IconButton
             size='large'
             aria-label='account of current user'
@@ -56,7 +77,9 @@ const Header = (): JSX.Element => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleLogout}>{t('logout')}</MenuItem>
+            <MenuItem onClick={handleLogout} color='inherit'>
+              <LogoutIcon color='primary' /> {t('logout')}
+            </MenuItem>
           </Menu>
         </div>
       </Toolbar>
