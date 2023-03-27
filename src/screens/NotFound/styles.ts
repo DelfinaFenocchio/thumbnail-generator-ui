@@ -12,7 +12,7 @@ const NotFoundContainer = styled.div`
 
   p {
     font-weight: bold;
-    color: #ab47bc;
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `;
 
