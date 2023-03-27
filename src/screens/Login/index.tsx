@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 import { Container } from '@molecules';
@@ -9,7 +9,7 @@ import { StyledContainer } from './styles';
  * Login screen
  */
 const Login: React.FC = () => {
-  const { loginWithRedirect, isLoading } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
   const { t } = useTranslation('login');
 
   /**
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
         <img src='src/assets/thumbnail.png' alt='image' className='logo' />
         <form onSubmit={handleSubmit}>
           <p className='description'>{t('body')}</p>
-          <Button text={t('button')} type='submit' isLoading={isLoading} />
+          <Button text={t('button')} type='submit' />
         </form>
       </StyledContainer>
     </Container>
