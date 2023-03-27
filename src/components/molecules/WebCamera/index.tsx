@@ -3,6 +3,7 @@ import Webcam from 'react-webcam';
 import { useTranslation } from 'react-i18next';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, IconButton } from '../../atoms';
+import StyledContainer from './styles';
 
 const WebCamera = ({ handleTakePhoto, setOpenCamera }): JSX.Element => {
   const webcamRef = useRef<Webcam>(null);
@@ -10,20 +11,13 @@ const WebCamera = ({ handleTakePhoto, setOpenCamera }): JSX.Element => {
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef?.current?.getScreenshot();
-    const reader = new FileReader();
-    const blob = new Blob([JSON.stringify(imageSrc)]);
-
-    reader.onload = (event) => {
-      if (event.target != null) {
-        handleTakePhoto(JSON.parse(event.target.result));
-      }
-    };
-    reader.readAsText(blob);
+    handleTakePhoto(imageSrc);
   }, [webcamRef]);
   return (
-    <>
+    <StyledContainer>
       <IconButton handleClick={() => setOpenCamera(false)} icon={<CloseIcon className='icon' />} />
       <Webcam
+        className='webcamCapture'
         screenshotFormat='image/jpeg'
         ref={webcamRef}
         onUserMediaError={(e) => {
@@ -35,7 +29,7 @@ const WebCamera = ({ handleTakePhoto, setOpenCamera }): JSX.Element => {
         }}
       />
       <Button onClick={capture} text={t('button')} />
-    </>
+    </StyledContainer>
   );
 };
 export default WebCamera;
