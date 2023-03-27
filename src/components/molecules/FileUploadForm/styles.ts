@@ -26,6 +26,14 @@ const StyledForm = styled.form`
   .delete-icon {
     color: ${({ theme }) => theme.palette.error.light};
   }
+
+  .title {
+    text-transform: uppercase;
+    background: linear-gradient(to right, #e450bb 0%, #7987dd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
 `;
 
 export default StyledForm;

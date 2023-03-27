@@ -35,7 +35,7 @@ const UploadFileForm = ({ handleSubmit, isLoading }: IUploadFile): JSX.Element =
         await handleSubmit(imagePreview);
       }}
     >
-      <h2>{t('title')}</h2>
+      <h1 className='title'>{t('title')}</h1>
       {openCamera ? (
         <WebCamera setOpenCamera={setOpenCamera} handleTakePhoto={handleTakePhoto} />
       ) : (
